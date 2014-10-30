@@ -1,0 +1,52 @@
+<!-- import polymer-element's definition -->
+
+<link rel="import" href="packages/polymer/polymer.html">
+
+<polymer-element name="color-picker">
+  <template>
+    <style>
+      :host {
+      display: inline-block;
+      outline: none;
+      text-align: inherit;
+      color: #757575;
+    }
+    :host(:hover) {
+      cursor: text;
+    }
+    
+    #container {
+      position: relative;
+    }
+    
+    .focusedColor {
+      color: #4059a9;
+      background: #4059a9;
+    }
+    
+    :host(.invalid) .focusedColor {
+      color: #d34336;
+      background: #d34336;
+    }
+    :host(.invalid) #floatedLabel {
+      color: #d34336;
+    }
+    
+    #floatedLabel {
+      font-size: 0.75em;
+      background: transparent;
+      white-space: nowrap;
+    }
+    #floatedLabel.hidden {
+      visibility: hidden;
+    }
+    #floatedLabel.focused {
+      visibility: visible;
+    }
+    </style>
+    <div id="floatedLabel"><span id="floatedLabelSpan">{{label}}</span></div><br>
+    <div horizontal layout padding="0" margin="0" id="container" width="100%"></div>
+  </template>
+  <script type="application/dart" src="color_picker.dart"></script>
+</polymer-element>
+

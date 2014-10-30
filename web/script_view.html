@@ -1,0 +1,62 @@
+<!-- import polymer-element's definition -->
+
+<link rel="import" href="packages/polymer/polymer.html">
+
+<link rel="import" href="packages/core_elements/core_icons.html">
+<link rel="import" href="packages/core_elements/core_scaffold.html">
+<link rel="import" href="packages/core_elements/core_menu.html">
+<link rel="import" href="packages/core_elements/core_item.html">
+<link rel="import" href="packages/core_elements/core_drawer_panel.html">
+<link rel="import" href="packages/core_elements/core_header_panel.html">
+<link rel="import" href="packages/core_elements/core_selector.html">
+<link rel="import" href="packages/core_elements/core_toolbar.html">
+<link rel="import" href="packages/paper_elements/roboto.html">
+<link rel="import" href="packages/paper_elements/paper_button.html">
+<link rel="import" href="packages/paper_elements/paper_icon_button.html">
+<link rel="import" href="packages/paper_elements/paper_input.html">
+<link rel="import" href="packages/paper_elements/paper_toggle_button.html">
+<link rel="import" href="packages/paper_elements/paper_item.html">
+
+<link rel="import" href="color_picker.html">
+
+<polymer-element name="script-view">
+  <template>
+    <link rel="stylesheet" href="adalightclient.css">
+    <style>
+      
+    </style>
+    
+    <core-header-panel>
+      <core-toolbar id="mainheader">
+        <span flex>LightClient</span>
+        <paper-icon-button id="settingsicon" class="{{isActive ? 'on' : 'off'}}" icon="settings-power" on-click="{{stopLight}}"></paper-icon-button>
+      </core-toolbar><br>
+      <div class="content">
+        <!--  <div center horizontal layout></div> -->
+        
+        <core-item label="Light Programs:"></core-item>
+        <core-selector id="selector" class="list" valueattr="label" selected="{{activeScriptName}}" on-core-activate="{{setScriptToName}}">
+          <template repeat="{{ entry in availableScripts }}">
+            <div class="item" label="{{ entry }}">{{entry}}</div>
+          </template>
+        </core-selector>
+        
+        <template if="{{activeScriptName != &quot;&quot;}}">
+          <core-item label="Parameters:"></core-item>
+          <template repeat="{{ param in parameters }}">
+            <template if="{{ param.type == &quot;int&quot; || param.type == &quot;double&quot;}}">
+              <paper-input floatingLabel on-change="{{handleInputChange}}" label="{{param.name}}" type="number" inputValue="{{param.currentValue}}" error="Input is not a number!"></paper-input>
+            </template>
+            <template if="{{ param.type == &quot;ColorRgb&quot;}}">
+              <color-picker label="{{param.name}}" color="{{param.currentValue}}" on-color-change="{{handleColorChange}}"></color-picker>
+            </template>
+          </template>
+        </template>
+                
+      </div>
+    </core-header-panel>
+    
+  </template>
+  <script type="application/dart" src="script_view.dart"></script>
+</polymer-element>
+

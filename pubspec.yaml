@@ -6,4 +6,4 @@ dependencies:
     color_picker: ">=1.1.4 <2.0.0"
 transformers:
 - polymer:
-    entry_points: web/adalightclient.html
+    entry_points: web/index.html

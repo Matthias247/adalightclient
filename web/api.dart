@@ -170,7 +170,6 @@ class WebSocketConnection {
 
 class Api {
   
-  static String HOST = "http://127.0.0.1:8081";
   static String WS_PATH = "ws://127.0.0.1:8081/ws";
   
   String _mode = "none";
